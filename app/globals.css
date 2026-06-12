@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+
+:root {
+  --navy:     #1A1A2E;
+  --crimson:  #E94560;
+  --parchment:#F5F0EB;
+  --gold:     #C9A84C;
+  --ink:      #333333;
+}
+
+body {
+  background-color: var(--parchment);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Story body reading typography */
+.story-body {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.9;
+  color: #2a2a2a;
+}
+
+.story-body p { margin-bottom: 1.5rem; }
+.story-body blockquote {
+  border-left: 3px solid var(--crimson);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: #555;
+  margin: 2rem 0;
+}
+
+/* Smooth transitions */
+a { transition: color 0.2s ease; }
+button { transition: all 0.2s ease; }
