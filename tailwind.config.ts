@@ -10,12 +10,15 @@ const config: Config = {
     extend: {
       colors: {
         kina: {
-          navy:    "#1A1A2E",
-          crimson: "#E94560",
-          parchment: "#F5F0EB",
-          gold:    "#C9A84C",
-          ink:     "#333333",
-          muted:   "#888888",
+          black:    "#0D0D0D",
+          surface:  "#141414",
+          elevated: "#1C1C1C",
+          gold:     "#C9A84C",
+          "gold-light": "#E5C97A",
+          "gold-dark":  "#A88830",
+          white:    "#FFFFFF",
+          muted:    "#888888",
+          subtle:   "#444444",
         },
       },
       fontFamily: {
@@ -25,16 +28,17 @@ const config: Config = {
       typography: {
         DEFAULT: {
           css: {
-            color: "#333333",
+            color: "#CCCCCC",
             fontFamily: "Georgia, serif",
             lineHeight: "1.9",
             fontSize: "1.125rem",
-            "h1,h2,h3": { fontFamily: "Georgia, serif", color: "#1A1A2E" },
-            a: { color: "#E94560" },
+            "h1,h2,h3": { fontFamily: "Georgia, serif", color: "#FFFFFF" },
+            a: { color: "#C9A84C" },
             blockquote: {
-              borderLeftColor: "#E94560",
+              borderLeftColor: "#C9A84C",
               fontStyle: "italic",
-              color: "#555555",
+              color: "#888888",
+              margin: "2rem 0",
             },
           },
         },

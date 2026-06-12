@@ -14,11 +14,11 @@ interface FormData {
 }
 
 export default function SubmitPage() {
-  const [genres, setGenres]         = useState<Genre[]>([]);
-  const [submitted, setSubmitted]   = useState(false);
-  const [error, setError]           = useState<string | null>(null);
-  const [loading, setLoading]       = useState(false);
-  const [user, setUser]             = useState<any>(null);
+  const [genres, setGenres]       = useState<Genre[]>([]);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError]         = useState<string | null>(null);
+  const [loading, setLoading]     = useState(false);
+  const [user, setUser]           = useState<any>(null);
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm<FormData>();
   const bodyText = watch("body", "");
@@ -42,7 +42,6 @@ export default function SubmitPage() {
         const profile = await getOrCreateAuthorProfile(user.id, data.display_name);
         authorId = profile.id;
       } else {
-        // Guest submission — require sign up
         setError("Please create an account to submit your story. It only takes a minute!");
         setLoading(false);
         return;
@@ -65,14 +64,14 @@ export default function SubmitPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-[#F5F0EB] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-[#0D0D0D] flex items-center justify-center px-4">
         <div className="text-center max-w-md">
-          <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-          <h1 className="font-display text-3xl font-bold text-[#1A1A2E] mb-3">Story Submitted!</h1>
-          <p className="text-gray-600 leading-relaxed mb-6">
+          <CheckCircle className="w-16 h-16 text-[#C9A84C] mx-auto mb-4" />
+          <h1 className="font-display text-3xl font-bold text-white mb-3">Story Submitted!</h1>
+          <p className="text-[#888888] leading-relaxed mb-8">
             Thank you for sharing your work with Kina. We'll review your submission and you'll hear back from us within a few days.
           </p>
-          <a href="/" className="bg-[#E94560] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#d13a52] transition-colors inline-block">
+          <a href="/" className="bg-[#C9A84C] hover:bg-[#E5C97A] text-[#0D0D0D] px-6 py-2 rounded-full font-bold transition-colors inline-block tracking-wide">
             Back to Stories
           </a>
         </div>
@@ -81,69 +80,70 @@ export default function SubmitPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F5F0EB] py-12 px-4">
+    <div className="min-h-screen bg-[#0D0D0D] py-14 px-4">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-[#1A1A2E] rounded-full mb-4">
-            <Feather className="text-[#E94560]" size={22} />
+          <div className="inline-flex items-center justify-center w-12 h-12 bg-[#C9A84C]/15 border border-[#C9A84C]/30 rounded-full mb-4">
+            <Feather className="text-[#C9A84C]" size={22} />
           </div>
-          <h1 className="font-display text-3xl font-bold text-[#1A1A2E] mb-2">Submit Your Story</h1>
-          <p className="text-gray-500 max-w-md mx-auto">
+          <p className="text-[#C9A84C] text-xs font-semibold uppercase tracking-[0.3em] mb-3">Your Voice</p>
+          <h1 className="font-display text-3xl font-bold text-white mb-2">Submit Your Story</h1>
+          <p className="text-[#888888] max-w-md mx-auto">
             Kina welcomes all genres and voices. We read every submission carefully.
           </p>
         </div>
 
         {!user && (
-          <div className="bg-[#1A1A2E]/5 border border-[#1A1A2E]/10 rounded-xl p-4 mb-6 text-sm text-[#1A1A2E] text-center">
-            <a href="/auth/signup" className="font-semibold text-[#E94560] hover:underline">Create a free account</a> or{" "}
-            <a href="/auth/login" className="font-semibold text-[#E94560] hover:underline">sign in</a> to submit your story.
+          <div className="bg-[#1C1C1C] border border-[#C9A84C]/20 rounded-xl p-4 mb-6 text-sm text-[#888888] text-center">
+            <a href="/auth/signup" className="font-semibold text-[#C9A84C] hover:text-[#E5C97A] transition-colors">Create a free account</a> or{" "}
+            <a href="/auth/login" className="font-semibold text-[#C9A84C] hover:text-[#E5C97A] transition-colors">sign in</a> to submit your story.
           </div>
         )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Author name */}
           <div>
-            <label className="block text-sm font-semibold text-[#1A1A2E] mb-1">Your Name *</label>
+            <label className="block text-sm font-semibold text-[#C9A84C] mb-2 uppercase tracking-wider text-xs">Your Name *</label>
             <input
               {...register("display_name", { required: "Name is required" })}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E94560] bg-white"
+              className="w-full border border-[#C9A84C]/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#C9A84C] bg-[#141414] text-white placeholder-[#444444]"
               placeholder="The name that will appear on Kina"
             />
-            {errors.display_name && <p className="text-red-500 text-xs mt-1">{errors.display_name.message}</p>}
+            {errors.display_name && <p className="text-red-400 text-xs mt-1">{errors.display_name.message}</p>}
           </div>
 
           {/* Title */}
           <div>
-            <label className="block text-sm font-semibold text-[#1A1A2E] mb-1">Story Title *</label>
+            <label className="block text-sm font-semibold text-[#C9A84C] mb-2 uppercase tracking-wider text-xs">Story Title *</label>
             <input
               {...register("title", { required: "Title is required", maxLength: { value: 120, message: "Title must be under 120 characters" } })}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E94560] bg-white font-display text-lg"
+              className="w-full border border-[#C9A84C]/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#C9A84C] bg-[#141414] text-white placeholder-[#444444] font-display text-lg"
               placeholder="Give your story a title"
             />
-            {errors.title && <p className="text-red-500 text-xs mt-1">{errors.title.message}</p>}
+            {errors.title && <p className="text-red-400 text-xs mt-1">{errors.title.message}</p>}
           </div>
 
           {/* Genre */}
           <div>
-            <label className="block text-sm font-semibold text-[#1A1A2E] mb-1">Genre *</label>
+            <label className="block text-sm font-semibold text-[#C9A84C] mb-2 uppercase tracking-wider text-xs">Genre *</label>
             <select
               {...register("genre_id", { required: "Please select a genre" })}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E94560] bg-white text-gray-700"
+              className="w-full border border-[#C9A84C]/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#C9A84C] bg-[#141414] text-[#888888]"
             >
               <option value="">Select a genre…</option>
               {genres.map((g) => (
                 <option key={g.id} value={g.id}>{g.name}</option>
               ))}
             </select>
-            {errors.genre_id && <p className="text-red-500 text-xs mt-1">{errors.genre_id.message}</p>}
+            {errors.genre_id && <p className="text-red-400 text-xs mt-1">{errors.genre_id.message}</p>}
           </div>
 
           {/* Story body */}
           <div>
-            <div className="flex items-center justify-between mb-1">
-              <label className="text-sm font-semibold text-[#1A1A2E]">Your Story *</label>
-              <span className="text-xs text-gray-400">{wordCount} words · ~{readTime} min read</span>
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-xs font-semibold text-[#C9A84C] uppercase tracking-wider">Your Story *</label>
+              <span className="text-xs text-[#555555]">{wordCount} words · ~{readTime} min read</span>
             </div>
             <textarea
               {...register("body", {
@@ -151,25 +151,25 @@ export default function SubmitPage() {
                 minLength: { value: 50, message: "Story must be at least 50 words" },
               })}
               rows={18}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E94560] bg-white font-display leading-loose resize-none"
+              className="w-full border border-[#C9A84C]/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#C9A84C] bg-[#141414] text-white placeholder-[#444444] font-display leading-loose resize-none"
               placeholder="Begin your story here…"
             />
-            {errors.body && <p className="text-red-500 text-xs mt-1">{errors.body.message}</p>}
+            {errors.body && <p className="text-red-400 text-xs mt-1">{errors.body.message}</p>}
           </div>
 
           {/* Author bio */}
           <div>
-            <label className="block text-sm font-semibold text-[#1A1A2E] mb-1">Short Bio <span className="font-normal text-gray-400">(optional)</span></label>
+            <label className="block text-xs font-semibold text-[#C9A84C] mb-2 uppercase tracking-wider">Short Bio <span className="font-normal text-[#555555] normal-case">(optional)</span></label>
             <textarea
               {...register("bio")}
               rows={3}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E94560] bg-white resize-none"
+              className="w-full border border-[#C9A84C]/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#C9A84C] bg-[#141414] text-white placeholder-[#444444] resize-none"
               placeholder="A sentence or two about you — who you are, where you're from…"
             />
           </div>
 
           {error && (
-            <div className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-xl p-4 text-sm text-red-700">
+            <div className="flex items-start gap-2 bg-red-900/20 border border-red-500/30 rounded-xl p-4 text-sm text-red-400">
               <AlertCircle size={16} className="flex-shrink-0 mt-0.5" />
               <span>{error}</span>
             </div>
@@ -178,12 +178,12 @@ export default function SubmitPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#1A1A2E] hover:bg-[#E94560] text-white font-bold py-4 rounded-xl transition-colors text-base disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full bg-[#C9A84C] hover:bg-[#E5C97A] text-[#0D0D0D] font-bold py-4 rounded-xl transition-colors text-base disabled:opacity-60 disabled:cursor-not-allowed tracking-wide"
           >
             {loading ? "Submitting…" : "Submit Story for Review"}
           </button>
 
-          <p className="text-xs text-center text-gray-400">
+          <p className="text-xs text-center text-[#444444]">
             By submitting, you confirm this is your original work. Kina reviews all submissions before publishing.
           </p>
         </form>

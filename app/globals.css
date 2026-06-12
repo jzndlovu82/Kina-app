@@ -23,15 +23,23 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.font-display { font-family: 'Playfair Display', Georgia, serif; }
-.gold-text { color: var(--gold); }
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
 
+/* Gold shimmer effect for headings */
+.gold-text {
+  color: var(--gold);
+}
+
+/* Story body reading typography */
 .story-body {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.125rem;
   line-height: 1.9;
   color: #CCCCCC;
 }
+
 .story-body p { margin-bottom: 1.5rem; }
 .story-body blockquote {
   border-left: 3px solid var(--gold);
@@ -41,15 +49,18 @@ body {
   margin: 2rem 0;
 }
 
+/* Gold divider line */
 .gold-line {
   height: 1px;
   background: linear-gradient(to right, transparent, var(--gold), transparent);
   opacity: 0.4;
 }
 
+/* Smooth transitions */
 a { transition: color 0.2s ease; }
 button { transition: all 0.2s ease; }
 
+/* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--black); }
 ::-webkit-scrollbar-thumb { background: var(--subtle); border-radius: 3px; }
